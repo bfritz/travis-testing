@@ -17,12 +17,5 @@ ls -al $SBT_CMD
 echo "sbt sha1:"
 sha1sum $SBT_CMD
 
-# avoid Travis sbt and use `before_script` version
-if [[ -x $HOME/sbt/bin/sbt ]] && [[ $(which sbt) == "/usr/local/bin/sbt" ]]; then
-    mv /usr/local/bin/sbt /usr/local/bin/sbt.disabled
-    export PATH=$PATH:$HOME/sbt/bin
-    echo "sbt command is now $(which sbt)"
-fi
-
 unset JVM_OPTS  # ignore /etc/sbt/jvmopts
 sbt -J-Xms1000M -J-Xmx1234M -J-XX:MaxMetaspaceSize=234M -Xss6M about
