@@ -6,7 +6,9 @@ env:
   global:
   - SBT_VERSION=0.13.13
 before_script:
-- mkdir -p $HOME/.sbt/launchers/$SBT_VERSION/
-- curl -L -o $HOME/.sbt/launchers/$SBT_VERSION/sbt-launch.jar http://dl.bintray.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/$SBT_VERSION/sbt-launch.jar
+- curl -L -o /tmp/sbt.tgz https://dl.bintray.com/sbt/native-packages/sbt/0.13.13/sbt-0.13.13.tgz
+- echo "40d03d21a260c5a6a43f8349298f41c9d047f97972057d9d915afd8945faf979  /tmp/sbt.tgz" | sha256sum --check
+- mkdir $HOME/sbt
+- tar -C $HOME/sbt --strip-components=1 -xvf /tmp/sbt.tgz
 script: bash bin/travis
 sudo: false
