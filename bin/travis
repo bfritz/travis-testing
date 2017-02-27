@@ -19,7 +19,8 @@ sha1sum $SBT_CMD
 
 # avoid Travis sbt and use `before_script` version
 if [[ -x $HOME/sbt/bin/sbt ]] && [[ $(which sbt) == "/usr/local/bin/sbt" ]]; then
-    export PATH=$HOME/sbt/bin:$PATH
+    mv /usr/local/bin/sbt /usr/local/bin/sbt.disabled
+    export PATH=$PATH:$HOME/sbt/bin
     echo "sbt command is now $(which sbt)"
 fi
 
