@@ -14,9 +14,6 @@ echo "sbt is:"
 echo $SBT_CMD
 ls -al $SBT_CMD
 
-echo "sbt is from:"
-dpkg -S $SBT_CMD
-
 echo "sbt sha1:"
 sha1sum $SBT_CMD
 
