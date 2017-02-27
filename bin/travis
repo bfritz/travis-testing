@@ -9,5 +9,15 @@ echo
 echo "/etc/sbt/sbtopts:"
 cat /etc/sbt/sbtopts
 
+echo "sbt is:"
+type sbt
+ls -al $(type sbt)
+
+echo "sbt is from:"
+dpkg -S sbt
+
+echo "sbt sha1:"
+sha1sum $(type sbt)
+
 unset JVM_OPTS  # ignore /etc/sbt/jvmopts
 sbt -J-Xms1000M -J-Xmx1234M -J-XX:MaxMetaspaceSize=234M -Xss6M about
