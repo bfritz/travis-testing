@@ -1,0 +1,12 @@
+#!/bin/bash -x
+
+set -e
+
+echo "/etc/sbt/jvmopts:"
+cat /etc/sbt/jvmopts
+
+echo
+echo "/etc/sbt/sbtopts:"
+cat /etc/sbt/sbtopts
+
+sbt about
