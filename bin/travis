@@ -9,4 +9,5 @@ echo
 echo "/etc/sbt/sbtopts:"
 cat /etc/sbt/sbtopts
 
-sbt -J-Xms1000M -J-Xmx1234M -J-XX:MaxMetaspaceSize=234M about
+unset JVM_OPTS  # ignore /etc/sbt/jvmopts
+sbt -J-Xms1000M -J-Xmx1234M -J-XX:MaxMetaspaceSize=234M -Xss6M about
