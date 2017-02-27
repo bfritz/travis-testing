@@ -9,4 +9,4 @@ echo
 echo "/etc/sbt/sbtopts:"
 cat /etc/sbt/sbtopts
 
-sbt about
+sbt -J-Xms1000M -J-Xmx1234M -J-XX:MaxMetaspaceSize=234M about
