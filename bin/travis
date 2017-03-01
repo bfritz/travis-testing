@@ -3,12 +3,14 @@
 set -e
 
 function gh_pages_commit_message() {
+    local SHORT_COMMIT=$(printf "%.7s" "$TRAVIS_COMMIT")
+
     cat <<EOM
 updated site
 
    Job: $TRAVIS_JOB_NUMBER
-Commit: $TRAVIS_COMMIT
-   Log: https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID
+Commit: $SHORT_COMMIT
+Detail: https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID
 EOM
 }
 
