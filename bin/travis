@@ -2,6 +2,16 @@
 
 set -e
 
+function gh_pages_commit_message() {
+    cat <<EOM
+updated site
+
+   Job: $TRAVIS_JOB_NUMBER
+Commit: $TRAVIS_COMMIT
+    Id: $TRAVIS_BUILD_ID
+EOM
+}
+
 echo "/etc/sbt/jvmopts:"
 cat /etc/sbt/jvmopts
 
@@ -16,5 +26,8 @@ ls -al $SBT_CMD
 
 echo "sbt sha1:"
 sha1sum $SBT_CMD
+
+SBT_GHPAGES_COMMIT_MESSAGE=$(gh_pages_commit_message)
+echo $SBT_GHPAGES_COMMIT_MESSAGE
 
 sbt about
