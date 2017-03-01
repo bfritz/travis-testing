@@ -8,7 +8,7 @@ updated site
 
    Job: $TRAVIS_JOB_NUMBER
 Commit: $TRAVIS_COMMIT
-    Id: $TRAVIS_BUILD_ID
+   Log: https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID
 EOM
 }
 
@@ -28,6 +28,6 @@ echo "sbt sha1:"
 sha1sum $SBT_CMD
 
 SBT_GHPAGES_COMMIT_MESSAGE=$(gh_pages_commit_message)
-echo $SBT_GHPAGES_COMMIT_MESSAGE
+echo "$SBT_GHPAGES_COMMIT_MESSAGE"
 
 sbt about
