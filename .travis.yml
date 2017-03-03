@@ -12,6 +12,8 @@ before_script:
 - curl -L -o $HOME/.sbt/launchers/$SBT_VERSION/sbt-launch.jar http://dl.bintray.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/$SBT_VERSION/sbt-launch.jar
 - java -version
 script: bash bin/travis
+after_script:
+- echo "Build end:           $(date +%s)"
 dist: trusty
 sudo: false
 notifications:
