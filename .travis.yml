@@ -13,7 +13,7 @@ before_script:
 - java -version
 script: bash bin/travis
 after_script:
-- echo "Build end:           $(date +%s)"
+- AFTER_SCRIPT_START="$(date +%s)" && echo "Build end:           $AFTER_SCRIPT_START"
 dist: trusty
 sudo: false
 notifications:
