@@ -6,6 +6,7 @@ env:
   global:
   - SBT_VERSION=0.13.13
 before_script:
+- export BUILD_START="$(ls -l --time-style=+%s -d /proc/1 | awk '{print $6}')"
 - mkdir -p $HOME/.sbt/launchers/$SBT_VERSION/
 - curl -L -o $HOME/.sbt/launchers/$SBT_VERSION/sbt-launch.jar http://dl.bintray.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/$SBT_VERSION/sbt-launch.jar
 - java -version

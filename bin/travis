@@ -2,34 +2,4 @@
 
 set -e
 
-function gh_pages_commit_message() {
-    local SHORT_COMMIT=$(printf "%.7s" "$TRAVIS_COMMIT")
-
-    cat <<EOM
-updated site
-
-   Job: $TRAVIS_JOB_NUMBER
-Commit: $SHORT_COMMIT
-Detail: https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID
-EOM
-}
-
-echo "/etc/sbt/jvmopts:"
-cat /etc/sbt/jvmopts
-
-echo
-echo "/etc/sbt/sbtopts:"
-cat /etc/sbt/sbtopts
-
-SBT_CMD=$(which sbt)
-echo "sbt is:"
-echo $SBT_CMD
-ls -al $SBT_CMD
-
-echo "sbt sha1:"
-sha1sum $SBT_CMD
-
-SBT_GHPAGES_COMMIT_MESSAGE=$(gh_pages_commit_message)
-echo "$SBT_GHPAGES_COMMIT_MESSAGE"
-
-sbt about
+echo "Build start time: $BUILD_START"
