@@ -2,4 +2,8 @@
 
 set -e
 
-echo "Build start time: $BUILD_START"
+SCRIPT_START="$(date +%s)"
+
+echo "Build start:         $BUILD_START"
+echo "before_script start: $BEFORE_SCRIPT_START"
+echo "script start:        $SCRIPT_START"
