@@ -4,7 +4,7 @@ set -e
 
 WATCHDOG_PID=""
 function find_sbt_pid() {
-    pgrep -f "java.*sbt.*goToSleep"
+    pgrep -f sbt-launch
 }
 
 function start_watchdog() {
