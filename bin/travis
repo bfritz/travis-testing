@@ -14,8 +14,7 @@ function start_watchdog() {
 }
 
 function stop_watchdog() {
-    [ -n "$WATCHDOG_PID" ] && kill "$WATCHDOG_PID"
-    return 0
+    ([ -n "$WATCHDOG_PID" ] && kill "$WATCHDOG_PID") || true
 }
 
 
