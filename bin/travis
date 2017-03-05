@@ -2,34 +2,24 @@
 
 set -e
 
-function gh_pages_commit_message() {
-    local SHORT_COMMIT=$(printf "%.7s" "$TRAVIS_COMMIT")
-
-    cat <<EOM
-updated site
-
-   Job: $TRAVIS_JOB_NUMBER
-Commit: $SHORT_COMMIT
-Detail: https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID
-EOM
+WATCHDOG_PID=""
+function find_sbt_pid() {
+    pgrep -f sbt-launch
 }
 
-echo "/etc/sbt/jvmopts:"
-cat /etc/sbt/jvmopts
+function start_watchdog() {
+    echo "Watchdog will wake up in $1"
+    (sleep "$1" && echo "Watchdog launched jstack." && echo k $(find_sbt_pid)) &
+    WATCHDOG_PID=$(pgrep --newest sleep)
+    echo "PID: $WATCHDOG_PID"
+}
 
-echo
-echo "/etc/sbt/sbtopts:"
-cat /etc/sbt/sbtopts
+function stop_watchdog() {
+    ([ -n "$WATCHDOG_PID" ] && kill "$WATCHDOG_PID") || true
+}
 
-SBT_CMD=$(which sbt)
-echo "sbt is:"
-echo $SBT_CMD
-ls -al $SBT_CMD
 
-echo "sbt sha1:"
-sha1sum $SBT_CMD
+start_watchdog 30s
+sleep 45s
+stop_watchdog
 
-SBT_GHPAGES_COMMIT_MESSAGE=$(gh_pages_commit_message)
-echo "$SBT_GHPAGES_COMMIT_MESSAGE"
-
-sbt about
